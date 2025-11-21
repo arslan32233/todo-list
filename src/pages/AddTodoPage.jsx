@@ -68,7 +68,7 @@ export default function AddTodoPage() {
 
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition text-lg font-semibold"
+            className="w-full px-4 py-2  text-white rounded hover:bg-green-600 transition text-lg font-semibold"
           >
             Add Todo
           </button>

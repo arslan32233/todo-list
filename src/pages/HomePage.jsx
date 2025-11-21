@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getTodos, saveTodos, getTheme, saveTheme } from "../utils.js";
+import { getTodos, saveTodos } from "../utils.js";
 
 import {
   TrashIcon,
   PencilSquareIcon,
   ExclamationTriangleIcon,
-  SunIcon,
-  MoonIcon,
 } from "@heroicons/react/24/outline";
 
 import { toast } from "react-toastify";
 
 export default function HomePage() {
-  const [theme, setTheme] = useState(getTheme());
   const [todos, setTodos] = useState(getTodos());
   const [filter, setFilter] = useState("all");
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("newest");
   const [deleteModalId, setDeleteModalId] = useState(null);
-
-  useEffect(() => {
-    document.body.className = theme;
-    saveTheme(theme);
-  }, [theme]);
-
-  const toggleTheme = () =>
-    setTheme(theme === "light" ? "dark" : "light");
 
   useEffect(() => saveTodos(todos), [todos]);
 
@@ -62,21 +51,10 @@ export default function HomePage() {
     .sort((a, b) => (sortBy === "newest" ? b.id - a.id : a.id - b.id));
 
   return (
-    <div className="p-6 md:p-10 min-h-screen transition bg-white dark:bg-gray-900 dark:text-white">
+    <div className="p-6 md:p-10 min-h-screen transition">
 
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold">My Todos</h2>
-
-        <button
-          onClick={toggleTheme}
-          className="px-4 py-2 rounded-full border dark:border-gray-600 flex items-center gap-2"
-        >
-          {theme === "light" ? (
-            <MoonIcon className="w-6 h-6" />
-          ) : (
-            <SunIcon className="w-6 h-6" />
-          )}
-        </button>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 flex-wrap">
@@ -85,7 +63,7 @@ export default function HomePage() {
           placeholder="Search todos..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 dark:text-white w-full md:w-1/3"
+          className="px-4 py-2 rounded-lg border bg-white dark:bg-gray-800 dark:text-white w-full md:w-1/3"
         />
 
         <div className="flex flex-wrap gap-2 items-center">
@@ -95,7 +73,7 @@ export default function HomePage() {
               onClick={() => setFilter(f)}
               className={`px-4 py-2 rounded-lg font-medium ${
                 filter === f
-                  ? "bg-black text-white dark:bg-white dark:text-black"
+                  ? " text-white dark:bg-white dark:text-black"
                   : "bg-gray-200 dark:bg-gray-700 dark:text-white"
               }`}
             >
@@ -106,7 +84,7 @@ export default function HomePage() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-3 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 dark:text-white"
+            className="px-3 py-2 rounded-lg border bg-white dark:bg-gray-800 dark:text-white"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
