@@ -61,7 +61,7 @@ export default function EditTodoPage() {
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
+          className="px-4 py-2  text-white rounded hover:bg-yellow-600 transition"
         >
           Update Todo
         </button>
