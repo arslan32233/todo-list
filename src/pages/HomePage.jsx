@@ -128,7 +128,7 @@ function TodoCard({ todo, handleToggleCompleted, setDeleteModalId }) {
               ? "line-through text-gray-400"
               : "text-gray-900 dark:text-white"
           }`}
-        >
+   >
           {todo.title}
         </p>
         <p
@@ -141,7 +141,7 @@ function TodoCard({ todo, handleToggleCompleted, setDeleteModalId }) {
           {todo.description}
         </p>
       </div>
-
+      
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <input
